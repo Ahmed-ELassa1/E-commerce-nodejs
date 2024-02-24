@@ -1,0 +1,996 @@
+{
+	"info": {
+		"_postman_id": "86bfa7fe-dd7e-4d50-ab4e-c2e682d7000d",
+		"name": "E-Commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24518502",
+		"_collection_link": "https://red-shadow-336063.postman.co/workspace/NodeJs-Route~5058c8bf-33db-4262-a224-4ef8a3fe55c9/collection/24518502-86bfa7fe-dd7e-4d50-ab4e-c2e682d7000d?action=share&source=collection_link&creator=24518502"
+	},
+	"item": [
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "addCategory",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFobWVkaGFtZWQyMTUwQGdtYWlsLmNvbSIsImlkIjoiNjViNTFkMDE3ZmZiNTU0MTk5NDlmZjNjIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzA2MzY5OTM5LCJleHAiOjE3MDg5NjE5Mzl9.s7eCJ6mWC4jHLRo2WSZaDMbx36WDePK2DCZDNXbTmMs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "car",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Ahmed-ElassaL/Downloads/download (4).jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}category",
+							"host": [
+								"{{host}}category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllCategories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "men fashion",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "d:\\New folder\\1670607460693.jpg",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}category",
+							"host": [
+								"{{host}}category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCategoryByID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "men fashion",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "d:\\New folder\\1670607460693.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}category/65a430a073e4c3bba5049a17",
+							"host": [
+								"{{host}}category"
+							],
+							"path": [
+								"65a430a073e4c3bba5049a17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCategory",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBld2lwOTMxNDlAa29uaWNhbi5jb20iLCJpZCI6IjY1YWMxNDQzYjE1M2YxMmJjMDRiZmNkZiIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzA2MzYwOTE4LCJleHAiOjE3MDg5NTI5MTh9.OawtOOmotukyHV6Mot2pFrEwiF6uXCzl7MaypYaf2r0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "hi",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Ahmed-ElassaL/Downloads/download (3).jpeg",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}category/65a430a073e4c3bba5049a17",
+							"host": [
+								"{{host}}category"
+							],
+							"path": [
+								"65a430a073e4c3bba5049a17"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SubCategories",
+			"item": [
+				{
+					"name": "addSubCategory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "shoes",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Ahmed-ElassaL/Downloads/download.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}category/65a4308673e4c3bba5049a14/subCategory",
+							"host": [
+								"{{host}}category"
+							],
+							"path": [
+								"65a4308673e4c3bba5049a14",
+								"subCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllSubCategories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "men fashion",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "d:\\New folder\\1670607460693.jpg",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}category/65a2ccda8c2c3797a5c5fe99/subCategory",
+							"host": [
+								"{{host}}category"
+							],
+							"path": [
+								"65a2ccda8c2c3797a5c5fe99",
+								"subCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSubCategoryByID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "men fashion",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "d:\\New folder\\1670607460693.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}category/65a430a073e4c3bba5049a17/subCategory/65a459547e40fa863e97292d",
+							"host": [
+								"{{host}}category"
+							],
+							"path": [
+								"65a430a073e4c3bba5049a17",
+								"subCategory",
+								"65a459547e40fa863e97292d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateSUbCategory",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "watches",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Ahmed-ElassaL/Downloads/download (5).jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}category/65a2ccda8c2c3797a5c5fe99/subCategory/65a44a60acc203abef74e09c",
+							"host": [
+								"{{host}}category"
+							],
+							"path": [
+								"65a2ccda8c2c3797a5c5fe99",
+								"subCategory",
+								"65a44a60acc203abef74e09c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brand",
+			"item": [
+				{
+					"name": "addBrand",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "nike",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Ahmed-ElassaL/Downloads/1.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}brand",
+							"host": [
+								"{{host}}brand"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllBrands",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "men fashion",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "d:\\New folder\\1670607460693.jpg",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}brand",
+							"host": [
+								"{{host}}brand"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBrandByID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "men fashion",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "d:\\New folder\\1670607460693.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}brand/65abcd124b9e18a1e940c67e",
+							"host": [
+								"{{host}}brand"
+							],
+							"path": [
+								"65abcd124b9e18a1e940c67e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBrand",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "zara",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Ahmed-ElassaL/Downloads/download (3).jpeg",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}brand/65abcd124b9e18a1e940c67e",
+							"host": [
+								"{{host}}brand"
+							],
+							"path": [
+								"65abcd124b9e18a1e940c67e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "coupon",
+			"item": [
+				{
+					"name": "addCoupon",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "lo18",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Ahmed-ElassaL/Downloads/download (5).jpeg",
+									"disabled": true
+								},
+								{
+									"key": "amount",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "expireIn",
+									"value": "2024-01-30 12:00",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}coupon",
+							"host": [
+								"{{host}}coupon"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllCoupons",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "men fashion",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "d:\\New folder\\1670607460693.jpg",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}coupon",
+							"host": [
+								"{{host}}coupon"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCouponByID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "men fashion",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "d:\\New folder\\1670607460693.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}coupon/65abea42d16d8adff006eb88",
+							"host": [
+								"{{host}}coupon"
+							],
+							"path": [
+								"65abea42d16d8adff006eb88"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCoupon",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "lol",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Ahmed-ElassaL/Downloads/download (6).jpeg"
+								},
+								{
+									"key": "expireIn",
+									"value": "2025-09-25 08:15",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "amount",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}coupon/65abf1be4fe50b92eb0314c4",
+							"host": [
+								"{{host}}coupon"
+							],
+							"path": [
+								"65abf1be4fe50b92eb0314c4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "singUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"ahmedhamed2150@gmail.com\",\r\n    \"password\":\"123\",\r\n    \"cPassword\":\"123\",\r\n    \"userName\":\"wwww\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}auth/signUp",
+							"host": [
+								"{{host}}auth"
+							],
+							"path": [
+								"signUp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sendCode",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"ahmedhamed2150@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}auth/sendCode",
+							"host": [
+								"{{host}}auth"
+							],
+							"path": [
+								"sendCode"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgetPassword",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"ahmedhamed2150@gmail.com\",\r\n    \"password\":\"1234\",\r\n    \"cPassword\":\"1234\",\r\n    \"code\":\"96485\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}auth/forgetPassword",
+							"host": [
+								"{{host}}auth"
+							],
+							"path": [
+								"forgetPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"ahmedhamed2150@gmail.com\",\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}auth/login",
+							"host": [
+								"{{host}}auth"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "addProduct",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFobWVkaGFtZWQyMTUwQGdtYWlsLmNvbSIsImlkIjoiNjViNTFkMDE3ZmZiNTU0MTk5NDlmZjNjIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzA2MzgzMzUwLCJleHAiOjE3MDg5NzUzNTB9.uTr90sN38nsIBdKgRPnanKAWK55_CPTC9LGnCLkWXaA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "ay7aga",
+									"type": "text"
+								},
+								{
+									"key": "mainImage",
+									"type": "file",
+									"src": "/C:/Users/Ahmed-ElassaL/Downloads/download (4).jpeg"
+								},
+								{
+									"key": "stock",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "discount",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "65a2ccda8c2c3797a5c5fe99",
+									"type": "text"
+								},
+								{
+									"key": "subCategoryId",
+									"value": "65a449547e40fa863e97292d",
+									"type": "text"
+								},
+								{
+									"key": "brandId",
+									"value": "65abcd124b9e18a1e940c67e",
+									"type": "text"
+								},
+								{
+									"key": "size[0]",
+									"value": "sm",
+									"type": "text"
+								},
+								{
+									"key": "colors",
+									"value": "red",
+									"type": "text"
+								},
+								{
+									"key": "colors",
+									"value": "blue",
+									"type": "text"
+								},
+								{
+									"key": "colors",
+									"value": "gray",
+									"type": "text"
+								},
+								{
+									"key": "subImages",
+									"type": "file",
+									"src": "/C:/Users/Ahmed-ElassaL/Downloads/download (5).jpeg"
+								},
+								{
+									"key": "subImages",
+									"type": "file",
+									"src": "/C:/Users/Ahmed-ElassaL/Downloads/images (1).jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}product",
+							"host": [
+								"{{host}}product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllProducts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "men fashion",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "d:\\New folder\\1670607460693.jpg",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}product",
+							"host": [
+								"{{host}}product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProductByID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "men fashion",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "d:\\New folder\\1670607460693.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}product/65a430a073e4c3bba5049a17",
+							"host": [
+								"{{host}}product"
+							],
+							"path": [
+								"65a430a073e4c3bba5049a17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCategory",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBld2lwOTMxNDlAa29uaWNhbi5jb20iLCJpZCI6IjY1YWMxNDQzYjE1M2YxMmJjMDRiZmNkZiIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzA2MzYwOTE4LCJleHAiOjE3MDg5NTI5MTh9.OawtOOmotukyHV6Mot2pFrEwiF6uXCzl7MaypYaf2r0",
+								"type": "text"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFobWVkaGFtZWQyMTUwQGdtYWlsLmNvbSIsImlkIjoiNjViNTFkMDE3ZmZiNTU0MTk5NDlmZjNjIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzA2MzgzMzUwLCJleHAiOjE3MDg5NzUzNTB9.uTr90sN38nsIBdKgRPnanKAWK55_CPTC9LGnCLkWXaA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "cups",
+									"type": "text"
+								},
+								{
+									"key": "mainImage",
+									"type": "file",
+									"src": "/C:/Users/Ahmed-ElassaL/Downloads/download (2).jpeg",
+									"disabled": true
+								},
+								{
+									"key": "colors",
+									"value": "asfr",
+									"type": "text"
+								},
+								{
+									"key": "size",
+									"value": "md",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "5000",
+									"type": "text"
+								},
+								{
+									"key": "discount",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "65a2ccda8c2c3797a5c5fe99",
+									"type": "text"
+								},
+								{
+									"key": "subCategoryId",
+									"value": "65a449547e40fa863e97292d",
+									"type": "text"
+								},
+								{
+									"key": "brandId",
+									"value": "65abcd124b9e18a1e940c67e",
+									"type": "text"
+								},
+								{
+									"key": "colors",
+									"value": "a7mr",
+									"type": "text"
+								},
+								{
+									"key": "subImages",
+									"type": "file",
+									"src": "/C:/Users/Ahmed-ElassaL/Downloads/1.jpg"
+								},
+								{
+									"key": "subImages",
+									"type": "file",
+									"src": "/C:/Users/Ahmed-ElassaL/Downloads/download (3).jpeg"
+								},
+								{
+									"key": "size",
+									"value": "xxl",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}product/65b55aa3ffea17d296ddba67",
+							"host": [
+								"{{host}}product"
+							],
+							"path": [
+								"65b55aa3ffea17d296ddba67"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
