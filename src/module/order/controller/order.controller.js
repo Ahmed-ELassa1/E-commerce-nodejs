@@ -7,6 +7,8 @@ import createInvoice from "../../../utilis/generatePdf.js";
 import fs from "fs";
 import payment from "../../../utilis/payments.js";
 import Stripe from "stripe";
+import { fileURLToPath } from 'url'
+import path, { dirname } from "path";
 export const createOrder = async (req, res, next) => {
   let { products, couponName } = req.body;
   let discountAmount = 0;
@@ -92,7 +94,11 @@ export const createOrder = async (req, res, next) => {
       { $push: { usedBy: req.user._id } }
     );
   }
-  const file = fs.readFileSync("../../../../invoice.pdf");
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+  const filePath = path.resolve(__dirname, '..', '..', '..', '..', 'invoice.pdf');
+  const file = fs.readFileSync(filePath)
+  // const file = fs.readFileSync("../../../../invoice.pdf");
   await sendEmail({
     to: req.user.email,
     subject: "invoice",
@@ -130,10 +136,10 @@ export const createOrder = async (req, res, next) => {
       },
       discounts: discountAmount
         ? [
-            {
-              coupon: stripCoupon?.id,
-            },
-          ]
+          {
+            coupon: stripCoupon?.id,
+          },
+        ]
         : [],
       success_url: `${process.env.SUCCESS_URL}/${order._id}`,
       cancel_url: `${process.env.CANCEL_URL}/${order._id}`,
@@ -198,3 +204,27 @@ export const deliverdOrder = async (req, res, next) => {
   return res.status(200).json({ message: "done", order: orderExist });
 };
 
+export const webhook = async (req, res, next) => {
+  const stripe = new Stripe(process.env.PAYMENT_API_KEY);
+  const endpointSecret = process.env.STRIP_ENDPOINT_SECRET;
+  const sig = req.headers['stripe-signature'];
+
+  let event;
+
+  try {
+    event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+  } catch (err) {
+    res, next.status(400).send(`Webhook Error: ${err.message}`);
+    return;
+  }
+  // Handle the event
+  if (event.type == 'checkout.session.async_payment_succeeded') {
+    const orderId = event.data.metadata.orderId
+    const order = await orderModel.findByIdAndUpdate({
+      _id: orderId,
+    }, { status: "onWay" }, { new: true });
+    return res.status(200).json({ message: "success payment", order })
+  }
+
+  return next(new Error("payment failed", { cause: 500 }))
+}

@@ -20,6 +20,7 @@ export const addBrand = async (req, res, next) => {
   req.body.image = { public_id, secure_url };
   const slug = slugify(req.body.name);
   req.body.slug = slug;
+  req.body.createdBy = req.user._id;
   const newBrand = await brandModel.create({
     ...req.body,
   });

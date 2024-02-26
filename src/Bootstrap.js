@@ -11,7 +11,13 @@ import { globerErrorHandling } from "./utilis/asyncHandler.js";
 function bootstrap(app, express) {
   var whitelist = ["http://example1.com", "http://example2.com"];
   connection();
-  app.use(express.json());
+  app.use((req, res, next) => {
+    if (req.originalUrl == "order/webhook") {
+      return next()
+    } else {
+      express.json({})(req, res, next)
+    }
+  });
   if (process.env.MODE == "DEV") {
     app.use(cors());
   } else {

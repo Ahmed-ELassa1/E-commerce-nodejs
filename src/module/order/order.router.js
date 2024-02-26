@@ -1,4 +1,4 @@
-import { Router } from "express";
+import express, { Router } from "express";
 import { asyncHandler } from "../../utilis/asyncHandler.js";
 import auth from "../../DB/middleware/auth.js";
 import tokenSchema from "../../utilis/tokenValidation.js";
@@ -29,5 +29,9 @@ router
     validation(orderValidation.deliverdOrderSchema),
     asyncHandler(orderController.deliverdOrder)
   )
+  .post('/webhook', express.raw({ type: 'application/json' }), orderController.webhook);
+
+
+// This is your Stripe CLI webhook secret for testing your endpoint locally.
 
 export default router;

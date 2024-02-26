@@ -13,6 +13,7 @@ export const addCoupon = async (req, res, next) => {
     );
     req.body.image = { public_id, secure_url };
   }
+  req.body.createdBy = req.user._id;
   const newCoupon = await couponModel.create({ ...req.body });
   if (newCoupon) {
     return res

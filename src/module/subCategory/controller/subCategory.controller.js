@@ -31,6 +31,7 @@ export const addSubCategory = async (req, res, next) => {
   req.body.image = { public_id, secure_url };
   req.body.slug = slugify(name);
   req.body.categoryId = req.params.categoryId;
+  req.body.createdBy = req.user._id;
   const newSubCategory = await subCategoryModel.create(req.body);
   if (newSubCategory) {
     return res.status(201).json({
