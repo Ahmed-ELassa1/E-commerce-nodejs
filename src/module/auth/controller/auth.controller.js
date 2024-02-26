@@ -1,4 +1,4 @@
-import { customAlphabet } from "nanoid";
+import { customAlphabet, nanoid } from "nanoid";
 import userModel from "../../../DB/models/User.model.js";
 import {
   generateToken,
@@ -6,6 +6,7 @@ import {
 } from "../../../utilis/GenerateAndVerifyToken.js";
 import { compareHashed, hashPassword } from "../../../utilis/HashAndCompare.js";
 import sendEmail from "../../../utilis/email.js";
+import { OAuth2Client } from 'google-auth-library';
 
 export const signUp = async (req, res, next) => {
   const userExist = await userModel.findOne({ email: req.body.email });
@@ -168,8 +169,66 @@ export const forgetPassword = async (req, res, next) => {
 
   const newUser = await userModel.findOneAndUpdate(
     { email: email },
-    { password, code: null,status:"offline" },
+    { password, code: null, status: "offline" },
     { new: true }
   );
   return res.status(200).json({ message: "done", user: newUser });
 };
+export const loginWithGmail = async (req, res, next) => {
+  const client = new OAuth2Client();
+  async function verify() {
+    const { idToken } = req.body
+    const ticket = await client.verifyIdToken({
+      idToken,
+      audience: process.env.CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+      // Or, if multiple clients access the backend:
+      //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+    });
+    const payload = ticket.getPayload();
+    const userid = payload['sub'];
+  }
+  let { name, picture, email, email_verified } = await verify()
+  const user = await userModel.findOne({ email })
+  if (!user) {
+    const newUser = await userModel.create(
+      {
+        email, userName: name,
+        password: nanoid(),
+        provider: "Google",
+        confirmEmail: email_verified, image: { secure_url: picture }
+      }
+    )
+    const token = generateToken({
+      payload: { email: newUser.email, id: newUser._id, role: newUser.role },
+      expireIn: 60 * 30,
+    });
+    const refToken = generateToken({
+      payload: { email: newUser.email, id: newUser._id, role: newUser.role },
+      expireIn: 60 * 60 * 24 * 30,
+    });
+    return res.status(201).json({
+      message: "Done",
+      token,
+      refToken,
+    });
+  }
+  if (user.provider == "Google") {
+    user.status = "online"
+    await user.save()
+    const token = generateToken({
+      payload: { email: email, id: user._id, role: user.role },
+      expireIn: 60 * 30,
+    });
+    const refToken = generateToken({
+      payload: { email: email, id: user._id, role: user.role },
+      expireIn: 60 * 60 * 24 * 30,
+    });
+
+    return res.status(200).json({
+      message: "Done",
+      token,
+      refToken,
+    });
+  }
+  return next(new Error("bad request: please login with gmail", { cause: 403 }))
+}

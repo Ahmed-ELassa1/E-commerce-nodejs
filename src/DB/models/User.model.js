@@ -52,10 +52,15 @@ const userSchema = new Schema(
       default: "offline",
     },
     wishList: [],
-    image: String,
+    image: Object,
     address: String,
     DOB: String, // date of birth
     code: String,
+    provider: {
+      type: String,
+      enum: ["System", "Google"],
+      default: "System",
+    },
   },
   {
     timestamps: true,

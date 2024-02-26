@@ -30,5 +30,10 @@ router
     "/forgetPassword",
     validation(authValidation.forgetPasswordSchema),
     asyncHandler(authController.forgetPassword)
+  )
+  .post(
+    "/loginWithGmail",
+    validation(authValidation.signUpSchema),
+    asyncHandler(authController.loginWithGmail)
   );
 export default router;
