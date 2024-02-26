@@ -214,15 +214,14 @@ export const webhook = async (req, res, next) => {
   try {
     event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
   } catch (err) {
-    res, next.status(400).send(`Webhook Error: ${err.message}`);
-    return;
+    return res.status(400).send(`Webhook Error: ${err.message}`);
   }
   // Handle the event
   if (event.type == 'checkout.session.async_payment_succeeded') {
-    const orderId = event.data.metadata.orderId
+    const orderId = event.data.object.metadata.orderId
     const order = await orderModel.findByIdAndUpdate({
       _id: orderId,
-    }, { status: "onWay" }, { new: true });
+    }, { status: "placed" }, { new: true });
     return res.status(200).json({ message: "success payment", order })
   }
 
